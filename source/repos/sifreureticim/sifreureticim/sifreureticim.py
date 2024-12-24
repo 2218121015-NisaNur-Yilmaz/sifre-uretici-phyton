@@ -1,15 +1,15 @@
 import random
 import string
 
-def generate_password(length=16, use_uppercase=False, use_numbers=False, use_symbols=False):
+def generate_password(length=20, use_uppercase=False, use_numbers=False, use_symbols=False):
     """
-    Rastgele þifre üreten bir fonksiyon.
+    Rastgele ï¿½ifre ï¿½reten bir fonksiyon.
 
-    :param length: Þifrenin uzunluðu (varsayýlan 16)
-    :param use_uppercase: Büyük harf kullanýlsýn mý? (varsayýlan False)
-    :param use_numbers: Sayýlar kullanýlsýn mý? (varsayýlan False)
-    :param use_symbols: Semboller kullanýlsýn mý? (varsayýlan False)
-    :return: Rastgele üretilmiþ bir þifre.
+    :param length: ï¿½ifrenin uzunluï¿½u (varsayï¿½lan 16)
+    :param use_uppercase: Bï¿½yï¿½k harf kullanï¿½lsï¿½n mï¿½? (varsayï¿½lan False)
+    :param use_numbers: Sayï¿½lar kullanï¿½lsï¿½n mï¿½? (varsayï¿½lan False)
+    :param use_symbols: Semboller kullanï¿½lsï¿½n mï¿½? (varsayï¿½lan False)
+    :return: Rastgele ï¿½retilmiï¿½ bir ï¿½ifre.
     """
     characters = string.ascii_lowercase
 
@@ -21,20 +21,20 @@ def generate_password(length=16, use_uppercase=False, use_numbers=False, use_sym
         characters += string.punctuation
 
     if len(characters) == 0:
-        raise ValueError("En az bir karakter türü seçmelisiniz!")
+        raise ValueError("En az bir karakter tï¿½rï¿½ seï¿½melisiniz!")
 
     return ''.join(random.choice(characters) for _ in range(length))
 
 if __name__ == "__main__":
-    print("Þifre Üreticiye Hoþ Geldiniz!")
+    print("ï¿½ifre ï¿½reticiye Hoï¿½ Geldiniz!")
     try:
-        length = int(input("Þifrenizin uzunluðunu girin (varsayýlan 16): ") or 16)
-        use_uppercase = input("Büyük harf kullanýlsýn mý? (E/h): ").strip().lower() != 'h'
-        use_numbers = input("Sayýlar kullanýlsýn mý? (E/h): ").strip().lower() != 'h'
-        use_symbols = input("Semboller kullanýlsýn mý? (E/h): ").strip().lower() != 'h'
+        length = int(input("ï¿½ifrenizin uzunluï¿½unu girin (varsayï¿½lan 16): ") or 16)
+        use_uppercase = input("Bï¿½yï¿½k harf kullanï¿½lsï¿½n mï¿½? (E/h): ").strip().lower() != 'h'
+        use_numbers = input("Sayï¿½lar kullanï¿½lsï¿½n mï¿½? (E/h): ").strip().lower() != 'h'
+        use_symbols = input("Semboller kullanï¿½lsï¿½n mï¿½? (E/h): ").strip().lower() != 'h'
 
         password = generate_password(length, use_uppercase, use_numbers, use_symbols)
-        print(f"Oluþturulan þifre: {password}")
+        print(f"Oluï¿½turulan ï¿½ifre: {password}")
     except ValueError as e:
         print(f"Hata: {e}")
 
