@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import random
 import string
 
-def generate_password(length=13, use_uppercase=False, use_numbers=False, use_symbols=False):
+def generate_password(length=16, use_uppercase=True, use_numbers=True, use_symbols=True):
     """
     Rastgele �ifre �reten bir fonksiyon.
 
