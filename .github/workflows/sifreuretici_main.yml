@@ -10,7 +10,14 @@ on:
 
 jobs:
   test:
-@@ -21,11 +21,10 @@ jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
 
@@ -18,10 +25,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Upgrade pip
-      run: python -m pip install --upgrade pip
 
     - name: Run tests
-      run: |
-        pytest
-        echo "No tests to run"  # Or replace with pytest if tests exist ve 
+      run: pytest  # Replace with actual test commands if they exist
