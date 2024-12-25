@@ -1,4 +1,8 @@
-.vs/
-
-
+AppData/
+*.log
+*.swp
+__pycache__/
+*.pyc
+.idea/
+*.txt
 
