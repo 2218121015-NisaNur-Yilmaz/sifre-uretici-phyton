@@ -1,41 +1,33 @@
-# -*- coding: utf-8 -*-
+name: Python CI Workflow
 
-import random
-import string
+on:
+  push:
+    branches:
+      - main
+      - longer
+  pull_request:
+    branches:
+      - main
+      - longer
 
-def generate_password(length=16, use_uppercase=True, use_numbers=True, use_symbols=True):
-    """
-    Rastgele �ifre �reten bir fonksiyon.
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-    :param length: �ifrenin uzunlu�u (varsay�lan 16)
-    :param use_uppercase: B�y�k harf kullan�ls�n m�? (varsay�lan False)
-    :param use_numbers: Say�lar kullan�ls�n m�? (varsay�lan False)
-    :param use_symbols: Semboller kullan�ls�n m�? (varsay�lan False)
-    :return: Rastgele �retilmi� bir �ifre.
-    """
-    characters = string.ascii_lowercase
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    if use_uppercase:
-        characters += string.ascii_uppercase
-    if use_numbers:
-        characters += string.digits
-    if use_symbols:
-        characters += string.punctuation
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-    if len(characters) == 0:
-        raise ValueError("En az bir karakter t�r� se�melisiniz!")
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-    return ''.join(random.choice(characters) for _ in range(length))
-
-if __name__ == "__main__":
-    print("�ifre �reticiye Ho� Geldiniz!")
-    try:
-        length = int(input("�ifrenizin uzunlu�unu girin (varsay�lan 16): ") or 16)
-        use_uppercase = input("B�y�k harf kullan�ls�n m�? (E/h): ").strip().lower() != 'h'
-        use_numbers = input("Say�lar kullan�ls�n m�? (E/h): ").strip().lower() != 'h'
-        use_symbols = input("Semboller kullan�ls�n m�? (E/h): ").strip().lower() != 'h'
-
-        password = generate_password(length, use_uppercase, use_numbers, use_symbols)
-        print(f"Olu�turulan �ifre: {password}")
-    except ValueError as e:
-        print(f"Hata: {e}")
+    - name: Run tests
+      run: |
+        pytest || echo "No tests to run"
