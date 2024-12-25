@@ -5,7 +5,7 @@ on:
       - longer
   pull_request:
     branches:
-      - main
+      - main 
       - longer
 
 jobs:
